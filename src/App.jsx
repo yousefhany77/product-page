@@ -7,16 +7,37 @@ function App() {
     professional: "$20",
     team: "$30",
   };
+  const [menu, setMenu] = useState(false);
+  function toggleMenu() {
+    setMenu((prev) => !prev);
+    console.log("toggleMenu");
+  }
   const [checked, setchecked] = useState(false);
   function toggle() {
     setchecked((prev) => !prev);
-    console.log("ToggleSwitch");
   }
   return (
     <div className="container">
       <nav>
         <h1>Musicify</h1>
-        <ul>
+        <div className={`menu ${menu ? "openmenu" : ""}`} onClick={toggleMenu}>
+          <div className="icon">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          {menu === true && (
+            <div className="mobile">
+              <ul id="mobile-menu">
+                <li>Features</li>
+                <li>Prices</li>
+                <li>Login</li>
+                <button id="nav-btn">Get Started</button>
+              </ul>
+            </div>
+          )}
+        </div>
+        <ul id="disktop">
           <li>Features</li>
           <li>Prices</li>
           <li>Login</li>
